@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./routes/Login";
 import Home from "./routes/Home";
 import Navbar from "./Components/navbar";
 import RequireAuth from "./Components/RequireAuth";
 import "./App.css";
+import Register from "./Components/Register";
+import { UserContext } from "./context/UserProvider";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { user } = useContext(UserContext);
+
+  if (user === false) {
+    return <p>loading user............</p>;
+  }
 
   return (
     <>
@@ -24,6 +30,7 @@ function App() {
           }
         ></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
       </Routes>
     </>
   );
