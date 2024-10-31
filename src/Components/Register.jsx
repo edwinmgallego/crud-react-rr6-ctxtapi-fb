@@ -40,58 +40,52 @@ Botón Register:
 Al hacer clic en "Register", se dispara el envío del formulario, que invoca onSubmit.
 Este enfoque garantiza una interfaz intuitiva, validación de datos y manejo efectivo de errores para registrar usuarios en una aplicación React.*/
 
-
-import React, { useContext, useState } from "react";
-import { UserContext } from "../context/UserProvider";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserProvider";
 import { erroresFirebase } from "../utils/erroresfirebase";
-import FormError from "./FormError";
 import { formValidate } from "../utils/formValidate";
-import FormInput from "./FormImput";
+
+import FormError from "../Components/FormError";
+import FormInput from "../Components/FormImput";
+import Title from "../Components/Title";
+import Button from "../Components/Button";
+
 const Register = () => {
-  //const [email, setEmail] = useState("emgallego@uao.edu.co");
-  // const [password, setPassword] = useState("0987654321");
   const navegate = useNavigate();
   const { registerUser } = useContext(UserContext);
   const { required, patternEmail, minLength, validateTrim, validateEquals } =
     formValidate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     getValues,
     setError,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      email: "emgallego@test.com",
+      password: "123123",
+      repassword: "123123",
+    },
+  });
 
   const onSubmit = async ({ email, password }) => {
-    console.log("prosesando formulario:", email, " ", password);
     try {
       await registerUser(email, password);
-      console.log("usuario creado--> ");
       navegate("/");
     } catch (error) {
-      console.log(error);
-      setError("firebase", {
-        message: erroresFirebase(error.code),
-      });
+      console.log(error.code);
+      const { code, message } = erroresFirebase(error.code);
+      setError(code, { message });
     }
   };
-  /* const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("prosesando formulario:", email, " ", password);
-    try {
-      await registerUser(email, password);
-      console.log("usuario creado--> ");
-      navegate("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };*/
+
   return (
     <>
-      <h1>User Register</h1>
-      <FormError error={errors.firebase} />
+      <Title text="Register" />
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           type="email"
@@ -100,6 +94,8 @@ const Register = () => {
             required,
             pattern: patternEmail,
           })}
+          label="Ingresa tu correo"
+          error={errors.email}
         >
           <FormError error={errors.email} />
         </FormInput>
@@ -111,6 +107,8 @@ const Register = () => {
             minLength,
             validate: validateTrim,
           })}
+          label="Ingresa tu password"
+          error={errors.password}
         >
           <FormError error={errors.password} />
         </FormInput>
@@ -119,12 +117,14 @@ const Register = () => {
           type="password"
           placeholder="Ingrese Password"
           {...register("repassword", {
-            validate: validateEquals(getValues),
+            validate: validateEquals(getValues("password")),
           })}
+          label="Repite contraseña"
+          error={errors.repassword}
         >
           <FormError error={errors.repassword} />
         </FormInput>
-        <button type="submit">Register</button>
+        <Button text="Register" type="submit" />
       </form>
     </>
   );

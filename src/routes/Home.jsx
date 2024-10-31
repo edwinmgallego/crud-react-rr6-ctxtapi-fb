@@ -1,12 +1,11 @@
-import React from "react";
+import ExampleRef from "../components/ExampleRef";
 
 const Home = () => {
   return (
     <>
-      <div>
-        <h1>Home</h1>
-      </div>
-      <h2>estoy protegido</h2>
+      <h1>Home</h1>
+      <h2>Estoy protegido</h2>
+      <ExampleRef />
     </>
   );
 };
