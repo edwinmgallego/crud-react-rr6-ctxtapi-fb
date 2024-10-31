@@ -33,7 +33,7 @@ const UserProvider = (props) => {
 
   useEffect(() => {
     const unsuscribe = onAuthStateChanged(auth, (user) => {
-      console.log(user);
+      console.log("user:_____________>", user);
       if (user) {
         const { email, photoURL, displayName, uid } = user;
         setUser({ email, photoURL, displayName, uid });
@@ -45,7 +45,9 @@ const UserProvider = (props) => {
     return () => unsuscribe();
   }, []);
   return (
-    <UserContext.Provider value={{ user, setUser, registerUser }}>
+    <UserContext.Provider
+      value={{ user, setUser, registerUser, loginUser, signOutUser }}
+    >
       {props.children}
     </UserContext.Provider>
   );
