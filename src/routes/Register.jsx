@@ -22,7 +22,7 @@ const Register = () => {
     setError,
   } = useForm({
     defaultValues: {
-      email: "bluuweb1@test.com",
+      email: "edwin1@test.edu.co",
       password: "123123",
       repassword: "123123",
     },
