@@ -32,30 +32,29 @@ Esto permite manipular directamente un elemento del DOM (el input) en un compone
 
 */
 
-
 import { forwardRef, useRef } from "react";
 
 const InputText = forwardRef((props, ref) => {
-  return (
-    <>
-      <input type="text" ref={ref} />
-    </>
-  );
+    return (
+        <>
+            <input type="text" ref={ref} />
+        </>
+    );
 });
 
 const ExampleRef = () => {
-  const inputFocus = useRef(null);
+    const inputFocus = useRef(null);
 
-  const handleButtonClick = () => {
-    console.log("me diste click");
-    inputFocus.current.focus();
-  };
+    const handleButtonClick = () => {
+        console.log("me diste click");
+        inputFocus.current.focus();
+    };
 
-  return (
-    <>
-      <InputText ref={inputFocus} />
-      <button onClick={handleButtonClick}>Click ref</button>
-    </>
-  );
+    return (
+        <>
+            <InputText ref={inputFocus} />
+            <button onClick={handleButtonClick}>Click ref</button>
+        </>
+    );
 };
 export default ExampleRef;

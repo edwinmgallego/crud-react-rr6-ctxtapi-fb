@@ -39,12 +39,11 @@ Botón Register:
 
 Al hacer clic en "Register", se dispara el envío del formulario, que invoca onSubmit.
 Este enfoque garantiza una interfaz intuitiva, validación de datos y manejo efectivo de errores para registrar usuarios en una aplicación React.*/
-
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserProvider";
-import { erroresFirebase } from "../utils/erroresfirebase";
+import { erroresFirebase } from "../utils/erroresFirebase";
 import { formValidate } from "../utils/formValidate";
 
 import FormError from "../Components/FormError";
@@ -66,9 +65,9 @@ const Register = () => {
     setError,
   } = useForm({
     defaultValues: {
-      email: "emgallego@test.com",
-      password: "123123",
-      repassword: "123123",
+      email: "blu1uweb1@test.com",
+      password: "a1234567890",
+      repassword: "a1234567890",
     },
   });
 

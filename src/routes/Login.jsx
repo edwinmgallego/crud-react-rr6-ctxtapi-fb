@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserProvider";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { erroresFirebase } from "../utils/erroresfirebase";
+import { erroresFirebase } from "../utils/erroresFirebase";
 import { formValidate } from "../utils/formValidate";
 
 import FormError from "../Components/FormError";
@@ -22,7 +22,7 @@ const Login = () => {
     setError,
   } = useForm({
     defaultValues: {
-      email: "emgallego@test.com",
+      email: "bluuweb1@test.com",
       password: "123123",
     },
   });
