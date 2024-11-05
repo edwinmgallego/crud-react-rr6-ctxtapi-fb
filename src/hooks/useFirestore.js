@@ -10,7 +10,7 @@ import {
   where,
 } from "firebase/firestore/lite";
 import { useState } from "react";
-import { db, auth } from "../firebase";
+import { db, auth } from "../firebase/firebase";
 import { nanoid } from "nanoid";
 
 export const useFirestore = () => {
