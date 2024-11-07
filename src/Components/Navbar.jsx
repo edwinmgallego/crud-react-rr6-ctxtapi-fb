@@ -33,7 +33,7 @@ const Navbar = () => {
                 <NavLink to="/" className={classButtonBlue}>
                   Inicio
                 </NavLink>
-                <button onClick={handleClickLogOut} className={classButtonRed}>
+                <button onClick={handleClicklogOut} className={classButtonRed}>
                   Logout
                 </button>
               </>

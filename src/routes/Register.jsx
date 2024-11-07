@@ -39,12 +39,11 @@ Botón Register:
 
 Al hacer clic en "Register", se dispara el envío del formulario, que invoca onSubmit.
 Este enfoque garantiza una interfaz intuitiva, validación de datos y manejo efectivo de errores para registrar usuarios en una aplicación React.*/
-
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserProvider";
-import { erroresFirebase } from "../utils/erroresfirebase";
+import { erroresFirebase } from "../utils/erroresFirebase";
 import { formValidate } from "../utils/formValidate";
 
 import FormError from "../Components/FormError";
@@ -54,6 +53,7 @@ import Button from "../Components/Button";
 
 const Register = () => {
   const navegate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const { registerUser } = useContext(UserContext);
   const { required, patternEmail, minLength, validateTrim, validateEquals } =
     formValidate();
@@ -64,22 +64,19 @@ const Register = () => {
     formState: { errors },
     getValues,
     setError,
-  } = useForm({
-    defaultValues: {
-      email: "emgallego@test.com",
-      password: "123123",
-      repassword: "123123",
-    },
-  });
+  } = useForm();
 
   const onSubmit = async ({ email, password }) => {
     try {
+      setLoading(true);
       await registerUser(email, password);
       navegate("/");
     } catch (error) {
       console.log(error.code);
       const { code, message } = erroresFirebase(error.code);
       setError(code, { message });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -124,7 +121,7 @@ const Register = () => {
         >
           <FormError error={errors.repassword} />
         </FormInput>
-        <Button text="Register" type="submit" />
+        <Button text="Register" type="submit" loading={loading} color="blue" />
       </form>
     </>
   );

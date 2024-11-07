@@ -27,7 +27,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<RequireAuth />}>
-          <Route path="/" element={<Home />} />
+          <Route index element={<Home />} />
           <Route path="/perfil" element={<Perfil />} />
         </Route>
         <Route path={"/"} element={<LayoutContainerForm />}>
