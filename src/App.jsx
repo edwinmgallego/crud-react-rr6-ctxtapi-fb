@@ -6,7 +6,7 @@ import Perfil from "./routes/Perfil";
 import LayoutRedirect from "./Components/Layout/LayaoutRedirect";
 import NotFound from "./routes/NotFound";
 
-import Navbar from "./Components/navbar";
+import Navbar from "./Components/Navbar";
 import RequireAuth from "./Components/Layout/RequireAuth";
 import "./App.css";
 import Register from "./routes/Register";

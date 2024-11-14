@@ -1,3 +1,32 @@
+/*
+Estas líneas importan varios módulos y componentes necesarios para el funcionamiento del componente Login:
+
+useContext y useState son hooks de React.
+UserContext es un contexto personalizado para manejar la autenticación del usuario.
+useNavigate es un hook de react-router-dom para la navegación.
+useForm es un hook de react-hook-form para manejar formularios.
+erroresFirebase y formValidate son utilidades personalizadas para manejar errores y validaciones de formularios.
+FormError, FormInput, Title y Button son componentes personalizados.
+Uso del Contexto:
+Aquí se utiliza el hook useContext para acceder a la función loginUser del contexto UserContext, que maneja la autenticación del usuario.
+Estado de Carga:
+
+Se define un estado loading para manejar el estado de carga durante el proceso de inicio de sesión.
+Navegación:
+
+Se utiliza el hook useNavigate para redirigir al usuario después de un inicio de sesión exitoso.
+
+Se utConfiguración del Formulario:
+Se configura el formulario utilizando useForm de react-hook-form.
+
+
+
+
+
+
+*/
+
+
 import { useContext, useState } from "react";
 import { UserContext } from "../context/UserProvider";
 import { useNavigate } from "react-router-dom";
